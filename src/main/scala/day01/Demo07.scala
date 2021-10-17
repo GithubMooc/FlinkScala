@@ -1,7 +1,7 @@
 package day01
 
 import func.MyFilter
-import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironment, createTypeInformation}
+import org.apache.flink.streaming.api.scala._
 import pojo.SensorReading
 
 /**

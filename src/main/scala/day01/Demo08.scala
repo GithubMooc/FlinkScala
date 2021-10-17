@@ -1,6 +1,6 @@
 package day01
 
-import org.apache.flink.streaming.api.scala.{ConnectedStreams, DataStream, StreamExecutionEnvironment, createTypeInformation}
+import org.apache.flink.streaming.api.scala._
 
 /**
  * @Author Master

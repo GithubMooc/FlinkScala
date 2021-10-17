@@ -1,7 +1,6 @@
 package day01
 
-import org.apache.flink.api.scala.createTypeInformation
-import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironment}
+import org.apache.flink.streaming.api.scala._
 
 
 /**

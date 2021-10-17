@@ -1,8 +1,7 @@
 package day01
 
-import org.apache.flink.streaming.api.datastream.DataStreamSource
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment
 import org.apache.flink.streaming.api.functions.source.SourceFunction
+import org.apache.flink.streaming.api.scala._
 import pojo.SensorReading
 
 import scala.collection.immutable
@@ -18,7 +17,7 @@ object Demo06 {
   def main(args: Array[String]): Unit = {
     val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
-    val input: DataStreamSource[SensorReading] = env.addSource(new SourceFunction[SensorReading] {
+    val input: DataStream[SensorReading] = env.addSource(new SourceFunction[SensorReading] {
       var running: Boolean = true
 
       override def run(sourceContext: SourceFunction.SourceContext[SensorReading]): Unit = {
@@ -27,12 +26,13 @@ object Demo06 {
         while (running) {
           curTemp.map(t => (t._1, t._2 + random.nextGaussian()))
 
-        //        System.nanoTime()
-        val curTime: Long = System.currentTimeMillis()
+          //        System.nanoTime()
+          val curTime: Long = System.currentTimeMillis()
 
-        curTemp.foreach(t => sourceContext.collect(SensorReading(t._1, curTime, t._2)))
+          curTemp.foreach(t => sourceContext.collect(SensorReading(t._1, curTime, t._2)))
 
-        Thread.sleep(1000) }
+          Thread.sleep(1000)
+        }
       }
 
       override def cancel(): Unit = {
