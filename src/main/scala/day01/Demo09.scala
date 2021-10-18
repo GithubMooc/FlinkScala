@@ -15,7 +15,7 @@ object Demo09 {
     val intStream: DataStream[Int] = env.fromElements(1, 2, 3, 4, 5)
     val stringStream: DataStream[String] = env.fromElements("a", "b", "c")
     val ci: ConnectedStreams[Int, String] = intStream.connect(stringStream)
-    val si: DataStream[Any] = ci.map(i => i * i, s => s + "a")
+    val si: DataStream[Any] = ci.map(i => i * i, _ + "a")
     si.print()
     env.execute()
   }

@@ -28,7 +28,7 @@ object Demo07 {
     //    简单滚动聚合，求每一个传感器所有温度值得最小值
     val aggStream: DataStream[SensorReading] = dataStream.keyBy(a => a.id).minBy("temperature")
     //    一般化聚合，输出SensorReading(id,最新时间戳+1,最小温度值)
-    val reduceStream: DataStream[SensorReading] = dataStream.keyBy(a => a.id).reduce((a, b) => {
+    val reduceStream: DataStream[SensorReading] = dataStream.keyBy(_.id).reduce((a, b) => {
       SensorReading(a.id, a.timestamp + 1, a.temperature.min(b.temperature))
     })
 

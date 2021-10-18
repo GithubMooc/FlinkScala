@@ -15,7 +15,7 @@ object Demo08 {
     val intStream: DataStream[Int] = env.fromElements(1, 2, 3, 4, 5)
     val charStream: DataStream[Char] = env.fromElements('a', 'b', 'c')
     val ci: ConnectedStreams[Int, Char] = intStream.connect(charStream)
-    val conn: DataStream[Int] = ci.map(i => i * i, c => c + 1)
+    val conn: DataStream[Int] = ci.map(i => i * i, _ + 1)
     conn.print()
     env.execute()
   }

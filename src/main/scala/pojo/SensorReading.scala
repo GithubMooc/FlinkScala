@@ -6,8 +6,4 @@ package pojo
  * @Time 14:10
  * @Name flink
  */
-case class SensorReading(
-                          id: String,
-                          timestamp: Long,
-                          temperature: Double
-                        )
+case class SensorReading(id: String, timestamp: Long, temperature: Double)
